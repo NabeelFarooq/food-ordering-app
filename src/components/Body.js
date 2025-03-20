@@ -26,6 +26,7 @@ const Body = () => {
     );
   };
 
+  // conditional rendering
   return restaurantList.length === 0 ? (
     <Shimmer />
   ) : (
