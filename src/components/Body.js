@@ -51,6 +51,7 @@ const Body = () => {
             }}
           />
           <button
+            className="search-btn"
             onClick={() => {
               // filter the restaurant cards and update the ui
               const filteredRestaurant = restaurantList.filter((res) =>
