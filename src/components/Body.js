@@ -11,7 +11,7 @@ const Body = () => {
 
   const RestaurantCardDiscounted = withDiscountLabel(RestaurantCard);
 
-  console.log("Body rendered", restaurantList);
+  // console.log("Body rendered", restaurantList);
 
   const filterTopRatedRestaurants = () => {
     const filteredList = restaurantList.filter(
@@ -30,7 +30,7 @@ const Body = () => {
 
     const json = await data.json();
 
-    console.log(json);
+    // console.log(json);
     setRestaurantList(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
