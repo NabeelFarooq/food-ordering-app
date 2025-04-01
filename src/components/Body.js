@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withDiscountLabel } from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -9,7 +9,9 @@ const Body = () => {
 
   const [searchText, setSearchText] = useState("");
 
-  console.log("Body rendered");
+  const RestaurantCardDiscounted = withDiscountLabel(RestaurantCard);
+
+  console.log("Body rendered", restaurantList);
 
   const filterTopRatedRestaurants = () => {
     const filteredList = restaurantList.filter(
@@ -89,7 +91,11 @@ const Body = () => {
             key={restaurant.info.id}
             to={"/restaurants/" + restaurant.info.id}
           >
-            <RestaurantCard resData={restaurant} />
+            {restaurant.info.avgRating > 4.5 ? (
+              <RestaurantCardDiscounted resData={restaurant} />
+            ) : (
+              <RestaurantCard resData={restaurant} />
+            )}
           </Link>
         ))}
       </div>
