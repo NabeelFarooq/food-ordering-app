@@ -4,6 +4,7 @@ import RestaurantMenu from "../RestaurantMenu";
 import MOCK_DATA from "../mocks/mockResMenu";
 import { screen } from "@testing-library/react";
 import Header from "../Header";
+import Cart from "../Cart";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import appStore from "../../../utils/appStore";
@@ -21,6 +22,7 @@ it("should Load Restaurant Menu Component", async () => {
         <Provider store={appStore}>
           <Header />
           <RestaurantMenu />
+          <Cart />
         </Provider>
       </BrowserRouter>
     )
@@ -41,4 +43,12 @@ it("should Load Restaurant Menu Component", async () => {
 
   fireEvent.click(addBtns[1]);
   expect(screen.getByText("Cart - (2 items)")).toBeInTheDocument();
+  expect(screen.getAllByTestId("foodItems").length).toBe(10);
+
+  fireEvent.click(screen.getByRole("button", { name: "Clear Cart" }));
+
+  expect(screen.getAllByTestId("foodItems").length).toBe(8);
+  expect(
+    screen.getByText("Cart is empty. Add items to the cart!")
+  ).toBeInTheDocument();
 });
