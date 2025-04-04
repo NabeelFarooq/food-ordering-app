@@ -5,6 +5,7 @@ import UserContext from "../../utils/UserContext";
 const RestaurantCard = (props) => {
   const { loggedInUser } = useContext(UserContext);
   const { resData } = props;
+  // console.log(resData);
   const { info } = resData;
   const { name, cuisines, avgRatingString, costForTwo, cloudinaryImageId } =
     info;
@@ -29,7 +30,6 @@ const RestaurantCard = (props) => {
 };
 
 // Higher order component
-
 export const withDiscountLabel = (RestaurantCard) => {
   return (props) => {
     return (
